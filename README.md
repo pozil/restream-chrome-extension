@@ -4,6 +4,8 @@
 
 Chrome Extension for the unofficial Elgato Stream Deck plugin that controls Restream Studio.
 
+![Screenshot of the Stream Deck plugin](https://github.com/pozil/streamdeck-restream-plugin/raw/main/src/org.pozil.restream.sdPlugin/previews/screenshot.png)
+
 This solution requires three components to run:
 1. [A Node.js server](https://github.com/pozil/streamdeck-restream-server)
 1. A Chrome extension (this project)
@@ -11,9 +13,9 @@ This solution requires three components to run:
 
 ## Chrome Extension Setup
 
+Install this extension from the Chrome Web Store.
 
-
-Now that the Chrome extension is installed, install the Streamdeck Plugin.
+Once the Chrome extension is installed, install the [Streamdeck Plugin](https://github.com/pozil/streamdeck-restream-plugin).
 
 
 ## Troubleshooting
