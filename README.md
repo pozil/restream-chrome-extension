@@ -13,7 +13,7 @@ This solution requires three components to run:
 
 ## Chrome Extension Setup
 
-Install this extension from the Chrome Web Store.
+Install [this extension](https://chromewebstore.google.com/u/1/detail/restream-studio-controls/aljahkhjciggopmeccklmohhagoinpal?hl=en) from the Chrome Web Store.
 
 Once the Chrome extension is installed, install the [Streamdeck Plugin](https://github.com/pozil/streamdeck-restream-plugin).
 
