@@ -1,9 +1,12 @@
 {
   "manifest_version": 3,
   "name": "Restream Studio Controls for Stream Deck",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Unofficial extension that controls Restream Studio with an Elgato Stream Deck.",
   "author": "Philippe Ozil (pozil)",
+  "permissions": [
+    "tabs"
+  ],
   "content_scripts": [
     {
       "js": ["script.js"],
