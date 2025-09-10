@@ -22,7 +22,7 @@ var isConnected = false;
 connectWebSocket();
 setInterval(reportState, STATE_REFRESH_DELAY);
 
-function handleWsMessage(event) {
+async function handleWsMessage(event) {
   console.log('WS message: ', event.data);  
   const message = JSON.parse(event.data);
   const { action } = message;
@@ -57,7 +57,13 @@ function handleWsMessage(event) {
         click('#liveStudioToggleAudioButton');
       break;
       case 'toggle-share-screen':
+        const isSharingScreen = getIsSharingScreen();
         click('button[class*="ScreenSharingButton_root__"]');
+        // If we are already sharing screen, click on stop sharing screen menu item
+        if (isSharingScreen) {
+          await wait(300);
+          click('button[class*="ScreenSharingMenu_dropdownItem__"]', 0);
+        }
       break;
       case 'toggle-source': {
           const index = parseIndexValue(message, 'index');
@@ -123,6 +129,7 @@ async function reportState() {
   const state = {
     isMicEnabled: getIsMicEnabled(),
     isCameraEnabled: getIsCameraEnabled(),
+    isSharingScreen: getIsSharingScreen(),
     sources: getSources(),
     activeLayoutIndex: getActiveLayoutIndex(),
     activeOverlayIndex: getActiveDesignItemIndex(3),
@@ -181,12 +188,18 @@ function getActiveLayoutIndex() {
 
 function getIsMicEnabled() {
   const el = document.getElementById('liveStudioToggleAudioButton');
-  return el.ariaLabel === 'Mute';
+  return el.ariaLabel.startsWith('Mute');
 }
 
 function getIsCameraEnabled() {
   const el = document.getElementById('liveStudioToggleVideoButton');
-  return el.ariaLabel === 'Disable camera';
+  return el.ariaLabel.startsWith('Disable camera');
+}
+
+function getIsSharingScreen() {
+  const el = document.querySelector('button[class*="ScreenSharingButton_root__"]');
+  const isSharingScreen = !el.ariaLabel.startsWith('Share screen');
+  return isSharingScreen;
 }
 
 /**
